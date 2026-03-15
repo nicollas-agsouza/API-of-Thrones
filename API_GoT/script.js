@@ -1,6 +1,7 @@
  async function carregarPersonagemAleatorio() {
             const container = document.getElementById('personagens');
             container.innerHTML = 'Carregando...';
+            // PIU
 
             try {
                 // Corrigindo a URL da API
