@@ -1,16 +1,9 @@
  async function carregarPersonagemAleatorio() {
             const container = document.getElementById('personagens');
             container.innerHTML = 'Carregando...';
-            // PIU
 
             try {
-                // Corrigindo a URL da API
                 const response = await fetch("https://thronesapi.com/api/v2/Characters");
-
-                if (!response.ok) {
-                    throw new Error("Erro na requisição: " + response.status);
-                }
-
                 const personagens = await response.json();
 
                 // Escolhe um índice aleatório
