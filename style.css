@@ -1,156 +1,136 @@
-/* RESET */
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
+/* Importando fontes com estilo medieval/clássico */
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=MedievalSharp&family=Lora:ital@0;1&display=swap');
+
+:root {
+  --iron-throne: #1a1a1a;
+  --gold-lannister: #c6a664;
+  --stark-snow: #e0e0e0;
+  --night-watch: #0a0a0a;
+  --dragon-blood: #8b0000;
 }
 
-body{
-    font-family: Arial, sans-serif;
-    background:#111;
-    color:white;
-    text-align:center;
-    min-height:100vh;
-    padding:20px;
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
-/* container principal */
-.content{
-    max-width:1200px;
-    margin:auto;
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    gap:20px;
+body {
+  background-color: var(--night-watch);
+  background-image: radial-gradient(circle, #2c2c2c 0%, #0a0a0a 100%);
+  color: var(--stark-snow);
+  font-family: 'Lora', serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+  padding: 20px;
+  text-align: center;
 }
 
-/* título */
-h1{
-    font-size:2.2rem;
+#icone {
+  width: 80px;
+  margin-bottom: 20px;
+  filter: sepia(1) saturate(2) hue-rotate(-30deg); /* Efeito dourado no ícone */
 }
 
-/* botão */
-button{
-    padding:12px 25px;
-    font-size:1rem;
-    border: solid 5px rgb(255, 255, 255);
-    border-radius:6px;
-    cursor:pointer;
-    background:#000000;
-    color:rgb(255, 255, 255);
-    font-weight: bolder;
-    transition:0.3s;
+h1 {
+  font-family: 'Cinzel', serif;
+  font-size: 1.8rem;
+  color: var(--gold-lannister);
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  margin-bottom: 10px;
 }
 
-button:hover{
-    background:#093084;
+h2 {
+  font-family: 'MedievalSharp', cursive;
+  font-size: 1rem;
+  font-weight: normal;
+  margin-bottom: 30px;
+  opacity: 0.8;
 }
 
-button:active{
-    background: white;
-    color: black;
-    transition: 100ms;
-}
-/* card */
-.card{
-    background:#222;
-    padding:20px;
-    border-radius:10px;
-    width:100%;
-    max-width:350px;
-    box-shadow:0 0 10px rgba(0,0,0,0.5);
+/* Container do Personagem - Mobile First */
+#personagens {
+  width: 100%;
+  max-width: 400px;
+  min-height: 300px;
+  margin-bottom: 30px;
 }
 
-.card p {
-    margin-top: 30px;
-    margin: 10px;
+.card {
+  background: rgba(40, 40, 40, 0.9);
+  border: 2px solid var(--gold-lannister);
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
+  transition: transform 0.3s ease;
 }
 
-/* imagem responsiva */
-.card img{
-    width:100%;
-    height:auto;
-    border-radius:8px;
+.card img {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+  border-radius: 4px;
+  border: 1px solid #444;
+  margin-bottom: 15px;
 }
 
-.card h2{
-    margin-top:10px;
+.card h2 {
+  color: var(--gold-lannister);
+  font-size: 1.5rem;
+  margin-bottom: 5px;
 }
 
-.card p{
-    margin-top:5px;
+/* Botão Estilizado */
+#btnPersonagem {
+  background: transparent;
+  color: var(--gold-lannister);
+  border: 2px solid var(--gold-lannister);
+  padding: 15px 30px;
+  font-family: 'Cinzel', serif;
+  font-weight: bold;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  width: 100%;
+  max-width: 300px;
 }
 
-/* -------- MOBILE (até 480px) -------- */
-@media (max-width:480px){
-
-    button:hover {
-        background-color: black;
-    }
-
-    h1{
-        font-size:1.5rem;
-    }
-
-    button{
-        width:100%;
-        font-size:1rem;
-    }
-
-    .card{
-        max-width:95%;
-        padding:15px;
-    }
+#btnPersonagem:hover {
+  background: var(--gold-lannister);
+  color: var(--night-watch);
+  box-shadow: 0 0 15px var(--gold-lannister);
 }
 
-/* -------- CELULAR GRANDE -------- */
-@media (min-width:481px) and (max-width:768px){
-
-    button:hover {
-        background-color: black;
-    }
-
-    h1{
-        font-size:1.7rem;
-    }
-
-    .card{
-        max-width:90%;
-    }
-
+/* Responsividade para Telas Maiores (Desktop/Tablets) */
+@media (min-width: 768px) {
+  h1 { font-size: 2.5rem; }
+  h2 { font-size: 1.2rem; }
+  
+  #personagens {
+    max-width: 500px;
+  }
+  
+  .card img {
+    height: 350px;
+  }
 }
 
-/* -------- TABLETS / IPADS -------- */
-@media (min-width:769px) and (max-width:1024px){
-
-    button:hover {
-        background-color: black;
-    }
-
-    h1{
-        font-size:2rem;
-    }
-
-    .card{
-        max-width:420px;
-    }
-
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
-/* -------- NOTEBOOKS -------- */
-@media (min-width:1025px) and (max-width:1440px){
-
-    .card{
-        max-width:450px;
-    }
-
+#icone {
+  width: 120px; /* Aumentei um pouco para dar mais destaque */
+  height: auto;
+  margin-bottom: 20px;
+  filter: drop-shadow(0 0 10px rgba(198, 166, 100, 0.5)); /* Adiciona um brilho dourado suave atrás do ícone */
+  transition: transform 0.5s ease;
 }
 
-/* -------- TELAS GRANDES -------- */
-@media (min-width:1441px){
-
-    .card{
-        max-width:500px;
-    }
-
+#icone:hover {
+  transform: rotate(10deg) scale(1.1); /* Um pequeno efeito ao passar o mouse */
 }

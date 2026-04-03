@@ -1,29 +1,53 @@
- async function carregarPersonagemAleatorio() {
-            const container = document.getElementById('personagens');
-            container.innerHTML = 'Carregando...';
+// if ("serviceWorker" in navigator) {
+//   window.addEventListener("load", () => {
+//     navigator.serviceWorker
+//       .register("/sw.js")
+//       .then((reg) => console.log("Service Worker registered.", reg))
+//       .catch((err) => console.error("Service Worker failed:", err));
+//   });
+// }
 
-            try {
-                const response = await fetch("https://thronesapi.com/api/v2/Characters");
-                const personagens = await response.json();
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", () => {
+    navigator.serviceWorker
+      .register("./PWA/serviceWorker.js") // Use o nome EXATO do seu arquivo
+      .then((reg) => console.log("Service Worker registrado!", reg))
+      .catch((err) => console.error("Falha no Service Worker:", err));
+  });
+}
 
-                // Escolhe um índice aleatório
-                const indiceAleatorio = Math.floor(Math.random() * personagens.length);
-                const personagem = personagens[indiceAleatorio];
+async function carregarPersonagemAleatorio() {
+  const container = document.getElementById("personagens");
+  container.innerHTML = "Carregando...";
 
-                // Monta o card
-                container.innerHTML = `
-                    <div class="card">
-                        <img src="${personagem.imageUrl}" alt="${personagem.fullName}">
-                        <h2>${personagem.fullName}</h2>
-                        <p><strong>Título:</strong> ${personagem.title || "Desconhecido"}</p>
-                        <p><strong>Família:</strong> ${personagem.family || "Desconhecida"}</p>
-                    </div>
-                `;
-            } catch (erro) {
-                console.error(erro);
-                container.innerHTML = "Erro ao carregar personagem.";
-            }
-        }
+  try {
+    const response = await fetch("https://thronesapi.com/api/v2/Characters");
+    const personagens = await response.json();
 
-        // Evento de clique no botão
-        document.getElementById('btnPersonagem').addEventListener('click', carregarPersonagemAleatorio);
+    // Escolhe um índice aleatório
+    const indiceAleatorio = Math.floor(Math.random() * personagens.length);
+    const personagem = personagens[indiceAleatorio];
+
+    // Dentro do try, após definir 'personagem':
+    container.innerHTML = `
+    <div class="card" style="animation: fadeIn 0.8s ease-in-out;">
+        <img src="${personagem.imageUrl}" alt="${personagem.fullName}">
+        <h2 style="font-family: 'Cinzel', serif;">${personagem.fullName}</h2>
+        <p style="margin-top: 10px; font-style: italic; color: #ccc;">
+            <strong>Casa:</strong> ${personagem.family || "Desconhecida"}
+        </p>
+        <p style="font-size: 0.9rem; margin-top: 5px; color: var(--gold-lannister);">
+            ${personagem.title}
+        </p>
+    </div>
+`;
+  } catch (erro) {
+    console.error(erro);
+    container.innerHTML = "Erro ao carregar personagem.";
+  }
+}
+
+// Evento de clique no botão
+document
+  .getElementById("btnPersonagem")
+  .addEventListener("click", carregarPersonagemAleatorio);
