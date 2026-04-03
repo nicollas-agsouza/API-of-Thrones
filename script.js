@@ -45,14 +45,8 @@ async function carregarPersonagemAleatorio() {
     console.error(erro);
     container.innerHTML = "Erro ao carregar personagem.";
   }
-}
 
-// Padrão de vibração: Batida forte, pausa, batida curta (Simulando um golpe)
-if ("vibrate" in navigator) {
-    navigator.vibrate([200, 100, 50]); 
-}
-
-// Evento de clique no botão
+  // Evento de clique no botão
 document
   .getElementById("btnPersonagem")
   .addEventListener("click", carregarPersonagemAleatorio);
@@ -75,3 +69,12 @@ window.addEventListener('devicemotion', (event) => {
     lastY = acceleration.y;
     lastZ = acceleration.z;
 });
+
+}
+
+// Padrão de vibração: Batida forte, pausa, batida curta (Simulando um golpe)
+if ("vibrate" in navigator) {
+    navigator.vibrate([200, 100, 50]); 
+}
+
+
