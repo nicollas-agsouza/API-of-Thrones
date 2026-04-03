@@ -1,21 +1,14 @@
-// if ("serviceWorker" in navigator) {
-//   window.addEventListener("load", () => {
-//     navigator.serviceWorker
-//       .register("/sw.js")
-//       .then((reg) => console.log("Service Worker registered.", reg))
-//       .catch((err) => console.error("Service Worker failed:", err));
-//   });
-// }
-
+// 1. Registro do Service Worker
 if ("serviceWorker" in navigator) {
   window.addEventListener("load", () => {
     navigator.serviceWorker
-      .register("./PWA/serviceWorker.js") // Use o nome EXATO do seu arquivo
+      .register("./serviceWorker.js") 
       .then((reg) => console.log("Service Worker registrado!", reg))
       .catch((err) => console.error("Falha no Service Worker:", err));
   });
 }
 
+// 2. Função Principal
 async function carregarPersonagemAleatorio() {
   const container = document.getElementById("personagens");
   container.innerHTML = "Carregando...";
@@ -24,11 +17,9 @@ async function carregarPersonagemAleatorio() {
     const response = await fetch("https://thronesapi.com/api/v2/Characters");
     const personagens = await response.json();
 
-    // Escolhe um índice aleatório
     const indiceAleatorio = Math.floor(Math.random() * personagens.length);
     const personagem = personagens[indiceAleatorio];
 
-    // Dentro do try, após definir 'personagem':
     container.innerHTML = `
     <div class="card" style="animation: fadeIn 0.8s ease-in-out;">
         <img src="${personagem.imageUrl}" alt="${personagem.fullName}">
@@ -39,29 +30,35 @@ async function carregarPersonagemAleatorio() {
         <p style="font-size: 0.9rem; margin-top: 5px; color: var(--gold-lannister);">
             ${personagem.title}
         </p>
-    </div>
-`;
+    </div>`;
+
+    // RECURSO DE HARDWARE: VIBRAÇÃO (Só funciona após interação do usuário)
+    if ("vibrate" in navigator) {
+      navigator.vibrate([200, 100, 50]); 
+    }
+
   } catch (erro) {
     console.error(erro);
     container.innerHTML = "Erro ao carregar personagem.";
   }
+}
 
-  // Evento de clique no botão
-document
-  .getElementById("btnPersonagem")
-  .addEventListener("click", carregarPersonagemAleatorio);
+// 3. Evento de clique (Fora da função)
+document.getElementById("btnPersonagem").addEventListener("click", carregarPersonagemAleatorio);
 
-  let threshold = 15; // Sensibilidade do balanço
+// 4. RECURSO DE HARDWARE: SACUDIR (Acelerômetro)
+let threshold = 15; 
 let lastX, lastY, lastZ;
 
 window.addEventListener('devicemotion', (event) => {
     let acceleration = event.accelerationIncludingGravity;
+    if (!acceleration) return; // Segurança para navegadores que não suportam
+
     let deltaX = Math.abs(lastX - acceleration.x);
     let deltaY = Math.abs(lastY - acceleration.y);
     let deltaZ = Math.abs(lastZ - acceleration.z);
 
     if (deltaX + deltaY + deltaZ > threshold) {
-        // O usuário sacudiu o aparelho!
         carregarPersonagemAleatorio();
     }
 
@@ -69,12 +66,3 @@ window.addEventListener('devicemotion', (event) => {
     lastY = acceleration.y;
     lastZ = acceleration.z;
 });
-
-}
-
-// Padrão de vibração: Batida forte, pausa, batida curta (Simulando um golpe)
-if ("vibrate" in navigator) {
-    navigator.vibrate([200, 100, 50]); 
-}
-
-
