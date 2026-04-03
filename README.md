@@ -1,8 +1,5 @@
 # 🐺 API of Thrones - O Reino em suas mãos
 
-[![GitHub license](https://img.shields.com/github/license/nicollas-agsouza/API-of-Thrones)](https://github.com/nicollas-agsouza/API-of-Thrones/blob/main/LICENSE)
-[![GitHub stars](https://img.shields.com/github/stars/nicollas-agsouza/API-of-Thrones)](https://github.com/nicollas-agsouza/API-of-Thrones/stargazers)
-
 Um projeto desenvolvido para explorar o consumo de APIs REST, transformando dados brutos em uma experiência visual imersiva e responsiva inspirada no universo de **Game of Thrones**.
 
 🔗 **Acesse o Reino aqui:** [https://nicollas-agsouza.github.io/API-of-Thrones/](https://nicollas-agsouza.github.io/API-of-Thrones/)
