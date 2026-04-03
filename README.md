@@ -51,4 +51,4 @@ Como este é um **Progressive Web App**, você pode instalá-lo no seu dispositi
 
 ---
 
-Desenvolvido com ⚔️ e 🩸 por [Nicollas Aguiar](https://github.com/nicollas-agsouza).
+Desenvolvido com ⚔️ e 🩸 por [Nicollas](https://github.com/nicollas-agsouza).
