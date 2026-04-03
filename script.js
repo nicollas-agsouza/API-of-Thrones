@@ -47,7 +47,31 @@ async function carregarPersonagemAleatorio() {
   }
 }
 
+// Padrão de vibração: Batida forte, pausa, batida curta (Simulando um golpe)
+if ("vibrate" in navigator) {
+    navigator.vibrate([200, 100, 50]); 
+}
+
 // Evento de clique no botão
 document
   .getElementById("btnPersonagem")
   .addEventListener("click", carregarPersonagemAleatorio);
+
+  let threshold = 15; // Sensibilidade do balanço
+let lastX, lastY, lastZ;
+
+window.addEventListener('devicemotion', (event) => {
+    let acceleration = event.accelerationIncludingGravity;
+    let deltaX = Math.abs(lastX - acceleration.x);
+    let deltaY = Math.abs(lastY - acceleration.y);
+    let deltaZ = Math.abs(lastZ - acceleration.z);
+
+    if (deltaX + deltaY + deltaZ > threshold) {
+        // O usuário sacudiu o aparelho!
+        carregarPersonagemAleatorio();
+    }
+
+    lastX = acceleration.x;
+    lastY = acceleration.y;
+    lastZ = acceleration.z;
+});
