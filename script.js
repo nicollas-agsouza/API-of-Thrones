@@ -2,7 +2,7 @@
 if ("serviceWorker" in navigator) {
   window.addEventListener("load", () => {
     navigator.serviceWorker
-      .register("./serviceWorker.js") 
+      .register("./PWA/serviceWorker.js") 
       .then((reg) => console.log("Service Worker registrado!", reg))
       .catch((err) => console.error("Falha no Service Worker:", err));
   });
@@ -65,4 +65,63 @@ window.addEventListener('devicemotion', (event) => {
     lastX = acceleration.x;
     lastY = acceleration.y;
     lastZ = acceleration.z;
+});
+
+// Teste forçado de vibração
+document.getElementById("btnPersonagem").addEventListener("click", () => {
+    console.log("Tentando vibrar...");
+    if ("vibrate" in navigator) {
+        const deuCerto = navigator.vibrate(500);
+        if (deuCerto) {
+            console.log("O comando de vibração foi enviado com sucesso!");
+        } else {
+            console.log("O navegador recusou o comando de vibração.");
+        }
+    } else {
+        alert("Seu navegador ou dispositivo NÃO suporta a API de vibração.");
+    }
+});
+
+async function ativarSensores() {
+    // Verifica se o navegador exige permissão (comum no iOS)
+    if (typeof DeviceMotionEvent.requestPermission === 'function') {
+        try {
+            const permissionState = await DeviceMotionEvent.requestPermission();
+            if (permissionState === 'granted') {
+                window.addEventListener('devicemotion', detectarSacudida);
+                alert("Sensores de Westeros ativados!");
+            }
+        } catch (error) {
+            console.error("Erro ao pedir permissão:", error);
+        }
+    } else {
+        // Para Android e navegadores que não exigem o prompt de permissão
+        window.addEventListener('devicemotion', detectarSacudida);
+        console.log("Sensores ativados automaticamente.");
+    }
+}
+
+// Criamos uma função separada para a lógica do movimento
+function detectarSacudida(event) {
+    let acceleration = event.accelerationIncludingGravity;
+    if (!acceleration) return;
+
+    let deltaX = Math.abs(lastX - acceleration.x);
+    let deltaY = Math.abs(lastY - acceleration.y);
+    let deltaZ = Math.abs(lastZ - acceleration.z);
+
+    // Se o movimento total for maior que o limite
+    if (deltaX + deltaY + deltaZ > threshold) {
+        carregarPersonagemAleatorio();
+    }
+
+    lastX = acceleration.x;
+    lastY = acceleration.y;
+    lastZ = acceleration.z;
+}
+
+// Chame a função ativarSensores() dentro do evento de clique do seu botão principal
+document.getElementById("btnPersonagem").addEventListener("click", () => {
+    ativarSensores(); // Ativa os sensores no primeiro clique
+    carregarPersonagemAleatorio();
 });

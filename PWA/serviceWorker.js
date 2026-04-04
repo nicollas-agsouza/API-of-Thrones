@@ -6,7 +6,7 @@ const ASSETS = [
   "./style.css",
   "./script.js",
   "./manifest.json",
-  "./PWA/Icons/wolf_192x192.png"
+  "./icons/wolf_192x192.png"
 ];
 
 // Instalação: Salva os arquivos no cache
