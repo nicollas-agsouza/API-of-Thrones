@@ -28,6 +28,13 @@ O site foi desenhado para ser simples e direto, focando na performance e na faci
 2.  **Display de Personagem:** Uma área central que renderiza um card dinâmico com a foto, nome, título e família do personagem sorteado.
 3.  **Botão de Ação:** Um gatilho estilizado que realiza uma nova chamada à API e atualiza o DOM sem recarregar a página.
 
+## 🛠️ Recursos de Hardware Implementados
+
+Para tornar a experiência mais "viva" e interativa, o projeto utiliza sensores nativos do aparelho:
+
+* **Haptic Feedback (Vibração):** Ao invocar um novo personagem, o dispositivo emite um padrão de vibração simulando o impacto de uma espada, dando um retorno tátil à ação.
+* **Acelerômetro (Sacudir para Invocar):** Implementação da `Device Motion API`. O usuário pode simplesmente sacudir o celular para sortear um novo personagem, eliminando a necessidade de cliques e tornando a interação mais orgânica.
+
 ## 📡 API Utilizada
 
 O projeto consome dados da **ThronesAPI**, uma API pública que fornece informações detalhadas sobre os personagens da saga.
@@ -44,4 +51,4 @@ Como este é um **Progressive Web App**, você pode instalá-lo no seu dispositi
 
 ---
 
-Desenvolvido com ⚔️ e 🩸 por [Nicollas Aguiar](https://github.com/nicollas-agsouza).
+Desenvolvido com ⚔️ e 🩸 por [Nicollas](https://github.com/nicollas-agsouza).
