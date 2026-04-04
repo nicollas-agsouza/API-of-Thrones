@@ -1,12 +1,12 @@
 const CACHE_NAME = "got-api-v1";
 // Lista de arquivos que devem ser salvos para funcionar offline
 const ASSETS = [
-  "./",
-  "./index.html",
-  "./style.css",
-  "./script.js",
-  "./manifest.json",
-  "./icons/wolf_192x192.png"
+  "../", // Volta para a raiz
+  "../index.html",
+  "../style.css",
+  "../script.js",
+  "./manifest.json", // Está na mesma pasta
+  "./icons/wolf_192x192.png" // Pasta minúscula
 ];
 
 // Instalação: Salva os arquivos no cache
