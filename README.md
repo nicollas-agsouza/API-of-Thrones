@@ -2,7 +2,7 @@
 
 Um projeto desenvolvido para explorar o consumo de APIs REST, transformando dados brutos em uma experiência visual imersiva e responsiva inspirada no universo de **Game of Thrones**.
 
-🔗 **Acesse o Reino aqui:** [https://nicollas-agsouza.github.io/API-of-Thrones/](https://nicollas-agsouza.github.io/API-of-Thrones/)
+🔗 **Acesse o Reino aqui:** [https://nicollas-agsouza.github.io/API-of-Thrones/]([https://nicollas-agsouza.github.io/API-of-Thrones/](https://frolicking-faloodeh-dbdb09.netlify.app/))
 
 ---
 
